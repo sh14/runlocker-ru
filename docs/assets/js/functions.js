@@ -6,7 +6,6 @@ function j (selector) {
 // добавить класс к элементу
 function addClass (obj, className) {
   let classes = obj.classList
-  console.log(classes)
   let newClasses = []
   classes.forEach((item) => {
     newClasses.push(item + '_' + className)
