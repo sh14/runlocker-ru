@@ -17,8 +17,8 @@
 </head>
 <body>
 <header class="header">
-	<a class="logo" href="<?php echo Init::$page['url']; ?>">
-		<?php echo Init::getImage( 'logo.png', 'Unlocker' ); ?>
+	<a class="header__logo" href="<?php echo Init::$page['url']; ?>">
+		<?php echo Init::getImage( 'logo.png', 'Unlocker','header__logo_image' ); ?>
 	</a>
 	<nav class="navigation">
 		<?php print Init::$page['menu']; ?>
