@@ -12,7 +12,7 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="<?php echo Init::$page['url']; ?>/assets/js/functions.js"></script>
 
-<?php //include 'thirdSide.php'; ?>
+<?php include 'thirdSide.php'; ?>
 
 
 </body>
