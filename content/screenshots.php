@@ -1,10 +1,13 @@
 <p>Посмотрите скриншоты программы Unlocker для разблокировки процеесов и файлов.</p>
 <h2>Скриншоты программы:</h2>
 <ol>
-	<li>Контекстное меню в проводнике Windows
-	<img alt="Контекстное меню Windows" class="align-center" src="<?php echo Init::$page['url']; ?>/assets/images/context_menu.png" />
+	<li><p>Кликните на файл правой клавишей мыши</p>
+		<?php echo Init::getImage( 'context_menu.png', 'Контекстное меню Windows', 'align-center' ); ?>
 	</li>
-	<li>Окно процессов, которые используют и блокируют файл
-	<img alt="Окно Unlocker" class="align-center" src="<?php echo Init::$page['url']; ?>/assets/images/process.png" />
+	<li><p>Если файл заблокирован появится диалоговое окно</p>
+		<?php echo Init::getImage( 'process.png', 'Окно Unlocker', 'align-center' ); ?>
+	</li>
+	<li>В появившемся окне выбирите действие, которое надо произвести с файлом(переименовать, удалить, переместить)</li>
+	<li>Затем нажмите кнопку "<b>Разблокировать все</b>" или выбирите нужный процеес и нажмите "<b>Разблокировать</b>"
 	</li>
 </ol>

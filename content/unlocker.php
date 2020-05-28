@@ -5,8 +5,8 @@ $ya_disk = '<svg class="b-info-space__logo" width="16px" height="11px" viewBox="
 <p>Скачать Unlocker можно абсолютно бесплатно на данном сайте, без смс и регистрации.</p>
 <div class="align-center">
 	<div class="logo">
-		<a href="/">
-			<img src="./assets/images/logo.png" alt="Unlocker"/>
+		<a href="<?php echo Init::$page['url']; ?>">
+			<?php echo Init::getImage( 'logo.png', 'Unlocker' ); ?>
 		</a>
 	</div>
 	<a class="button" target="_blank" href="http://www.emptyloop.com/unlocker/#download">Скачать Unlocker

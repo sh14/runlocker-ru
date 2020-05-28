@@ -120,6 +120,14 @@ class Init {
 
 		return $path . $file;
 	}
+
+	static function getImage( $srcName, $alt, $class = '' ) {
+		list( $width, $height ) = getimagesize( Init::$page['imagesPath'] . '/' . $srcName );
+		$src   = Init::$page['imagesUrl'] . '/' . $srcName;
+		$class = ! empty( $class ) ? ' class="' . $class . '"' : '';
+
+		return '<img alt="' . $alt . '" width="' . $width . '" height="' . $height . '" src="' . $src . '"' . $class . '/>';
+	}
 }
 
 require 'config.php';

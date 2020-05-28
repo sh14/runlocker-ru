@@ -109,12 +109,9 @@ foreach ( $awards as $i => $item ) {
 	$alt = explode( '-', $alt );
 	$alt = $alt[1] . ' ' . $alt[0];
 
-
-	list( $width, $height ) = getimagesize( Init::$page['imagesPath'] . '/' . $item['image'] );
-	$src = Init::$page['imagesUrl'] . '/' . $item['image'];
 	$list[] = '<div class="awards__cell">'
 	          . '<a target="_blank" href="' . $item['link'] . '">'
-	          . '<img alt="' . $alt . '" width="' . $width . '" height="' . $height . '" src="' . $src . '"/>'
+	          . Init::getImage( $item['image'], $alt )
 	          . '</a>'
 	          . '</div>';
 
