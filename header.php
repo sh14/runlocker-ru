@@ -11,14 +11,14 @@
 	<meta property="og:description" content="<?php print Init::$page['description']; ?>"/>
 	<meta property="og:url" content="<?php print Init::$page['url'] .'/'. Init::$page['active']; ?>"/>
 	<meta property="og:site_name" content="Unlocker"/>
-	<meta property="og:image" content="<?php echo Init::$page['url']; ?>/assets/images/logo_small.png"/>
+	<meta property="og:image" content="<?php echo Init::$page['url']; ?>/assets/images/unlocker-logo-fb.png"/>
 	<link rel="shortcut icon" href="<?php echo Init::$page['url']; ?>/assets/images/icon.png" type="image/x-icon"/>
 	<link href="<?php echo Init::$page['url']; ?>/assets/styles/style.css" rel="stylesheet"/>
 </head>
 <body>
 <header class="header">
 	<a class="logo" href="<?php echo Init::$page['url']; ?>">
-		<img src="<?php echo Init::$page['url']; ?>/assets/images/logo.png" alt="Unlocker"/>
+		<?php echo Init::getImage( 'logo.png', 'Unlocker' ); ?>
 	</a>
 	<nav class="navigation">
 		<?php print Init::$page['menu']; ?>
