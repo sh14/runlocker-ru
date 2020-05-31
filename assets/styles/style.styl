@@ -317,6 +317,17 @@ img.align-center
 .hash
   font-size: .8em
   line-height: 1.2
+  display flex
+  justify-content space-between
+  flex-direction: column
+  margin: 20px 0
+
+  @media (max-width 890px)
+    flex-direction: row
+
+  &__item
+    display block
+    margin: 0 10px;
 
 .logo
   width 350px
