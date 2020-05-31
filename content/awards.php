@@ -1,4 +1,12 @@
 <?php
+Init::setMeta( __FILE__, [
+	'order'       => 5,
+	'name'        => 'Награды',
+	'title'       => 'Награды утилиты Unlocker',
+	'description' => 'Посмотрите награды утилиты Unlocker.',
+] );
+?>
+<?php
 $awards = [
 	[
 		'link'  => 'http://www.brothersoft.com/unlocker-60547.html',

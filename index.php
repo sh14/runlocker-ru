@@ -7,6 +7,7 @@ class Init {
 	static $prodDomain = '';
 	static $menu = [];
 	static $page = [];
+	static $meta = [];
 
 	static function getDomain() {
 		if ( 'prod' != self::$mode ) {
@@ -35,17 +36,18 @@ class Init {
 	}
 
 	static function setMenu() {
-		foreach ( self::$menu as $i => $item ) {
+		$i = 0;
+		foreach ( self::$meta as $name => $item ) {
 			$p = empty( $_GET['p'] ) ? 'main' : $_GET['p'];
 
 			if ( $p == $item['p'] ) {
 				foreach ( $item as $key => $value ) {
 					self::$page[ $key ] = $value;
 				}
-				$active = true;
+				self::$page['active'] = true;
 			}
 			else {
-				$active = false;
+				self::$page['active'] = false;
 			}
 
 			if ( $item['p'] == 'main' ) {
@@ -55,28 +57,25 @@ class Init {
 				$p = $item['p'];
 			}
 			self::$page['file'] = $p;
-			if ( ! empty( $active ) ) {
+			if ( ! empty( self::$page['active'] ) ) {
 				self::$page['active'] = self::$page['file'];
 			}
 
-			if ( 'prod' == self::$mode ) {
-				$prefix  = '';
-				$postfix = $item['p'] != 'main' ? '.html' : '';
-			}
-			else {
-				$prefix  = $item['p'] != 'main' ? '?p=' : '';
-				$postfix = '';
-			}
-			$class                    = 'navigation__item';
-			$class                    = empty( $active ) ? $class : $class . ' ' . $class . '_active';
-			$class                    .= ' js-menu';
-			self::$page['menu'][ $i ] = '<li class="' . $class . '">';
+			$class = 'navigation__item';
+			$class = empty( self::$page['active'] ) ? $class : $class . ' ' . $class . '_active';
+			$class .= ' js-menu';
 
-			$class                    = 'navigation__link';
-			$class                    = empty( $active ) ? $class : $class . ' ' . $class . '_active';
-			self::$page['menu'][ $i ] .= '<a class="' . $class . '" href="' . self::getStartUrl() . '/' . $prefix . self::$page['file'] . $postfix . '">' . $item['name'] . '</a>';
-			self::$page['menu'][ $i ] .= '</li>';
+			$order    = empty( $item['order'] ) ? 1000 + $i : $item['order'] * 20;
+			$data     = [
+				'class'   => 'navigation__link',
+				'p'       => $item['p'],
+			];
+			$menuItem = '<li class="' . $class . '">' . self::getPageLink( $data ) . '</li>';
+
+			self::$page['menu'][ $order ] = $menuItem;
+			$i ++;
 		}
+		ksort(self::$page['menu']);
 		self::$page['menu'] = implode( '', self::$page['menu'] );
 		self::$page['menu'] = '<ul class="navigation__list js-menu">'
 		                      . self::$page['menu']
@@ -86,6 +85,25 @@ class Init {
 		                      . '</ul>';
 	}
 
+	static function getPageLink( $data ) {
+
+		if ( 'prod' == self::$mode ) {
+			$prefix  = '';
+			$postfix = $data['p'] != 'main' ? '.html' : '';
+		}
+		else {
+			$prefix  = $data['p'] != 'main' ? '?p=' : '';
+			$postfix = '';
+		}
+
+		$file = 'main' == $data['p'] ? '' : $data['p'];
+
+		$data['class'] = empty( self::$page['active'] ) ? $data['class'] : $data['class'] . ' ' . $data['class'] . '_active';
+
+		$caption = empty( $data['caption'] ) ? self::$meta[ $data['p'] ]['name'] : $data['caption'];
+
+		return '<a class="' . $data['class'] . '" href="' . self::getStartUrl() . '/' . $prefix . $file . $postfix . '">' . $caption . '</a>';
+	}
 
 	static function set() {
 		if ( ! empty( $_GET['mode'] ) ) {
@@ -111,6 +129,7 @@ class Init {
 		self::$page['imagesUrl']   = self::getUrl() . '/assets/images';
 		self::$page['projectPath'] = dirname( __FILE__ );
 		self::$page['imagesPath']  = self::$page['projectPath'] . '/assets/images';
+		self::getMeta();
 		self::setMenu();
 	}
 
@@ -128,7 +147,41 @@ class Init {
 
 		return '<img alt="' . $alt . '" width="' . $width . '" height="' . $height . '" src="' . $src . '"' . $class . '/>';
 	}
+
+	static function setMeta( $name, $meta ) {
+		$name                = explode( '/', explode( '.', $name )[0] );
+		$name                = end( $name );
+		$meta['p']           = $name;
+		self::$meta[ $name ] = $meta;
+	}
+
+	static function getMeta() {
+
+		$files = self::getPagesNames();
+		foreach ( $files as $file ) {
+//			print_r($file);
+			ob_start();
+			require './content/' . $file;
+			ob_clean();
+//			print_r(self::$meta);
+		}
+	}
+
+	static function getPagesNames() {
+		$files = scandir( './content' );
+		$files = array_values( array_filter( $files, function ( $item ) {
+			if ( '.' != $item && '..' != $item ) {
+				return $item;
+			}
+
+			return '';
+		} ) );
+
+		return $files;
+	}
+
 }
+
 
 require 'config.php';
 Init::set();
