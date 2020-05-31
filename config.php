@@ -3,12 +3,17 @@
  * Date: 2020-05-28
  * @author Isaenko Alexey <info@oiplug.com>
  */
-
+function config(){
+	return [
+		'mode'=>'dev',
+		'prodDomain'=>'runlocker.ru',
+	];
+}
 
 Init::$mode = 'dev';
 Init::$page['lang'] = 'ru';
 Init::$prodDomain   = 'runlocker.ru';
-Init::$menu         = array(
+/*Init::$menu         = array(
 	array(
 		'p'           => 'main',
 		'name'        => 'Главная',
@@ -45,6 +50,6 @@ Init::$menu         = array(
 		'title'       => 'Конкуренты утилиты Unlocker',
 		'description' => 'Сравните возможности утилиты Unlocker с другими аналогичными программами.',
 	),
-);
+);*/
 
 // eof
