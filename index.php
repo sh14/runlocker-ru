@@ -67,15 +67,15 @@ class Init {
 
 			$order    = empty( $item['order'] ) ? 1000 + $i : $item['order'] * 20;
 			$data     = [
-				'class'   => 'navigation__link',
-				'p'       => $item['p'],
+				'class' => 'navigation__link',
+				'p'     => $item['p'],
 			];
 			$menuItem = '<li class="' . $class . '">' . self::getPageLink( $data ) . '</li>';
 
 			self::$page['menu'][ $order ] = $menuItem;
 			$i ++;
 		}
-		ksort(self::$page['menu']);
+		ksort( self::$page['menu'] );
 		self::$page['menu'] = implode( '', self::$page['menu'] );
 		self::$page['menu'] = '<ul class="navigation__list js-menu">'
 		                      . self::$page['menu']
@@ -180,6 +180,9 @@ class Init {
 		return $files;
 	}
 
+	static function getVersion() {
+		return rand();
+	}
 }
 
 

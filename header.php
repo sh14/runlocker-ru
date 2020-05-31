@@ -13,7 +13,7 @@
 	<meta property="og:site_name" content="Unlocker"/>
 	<meta property="og:image" content="<?php echo Init::$page['url']; ?>/assets/images/unlocker-logo-fb.png"/>
 	<link rel="shortcut icon" href="<?php echo Init::$page['url']; ?>/assets/images/icon.png" type="image/x-icon"/>
-	<link href="<?php echo Init::$page['url']; ?>/assets/styles/style.css" rel="stylesheet"/>
+	<link href="<?php echo Init::$page['url']; ?>/assets/styles/style.css?<?php echo Init::getVersion(); ?>" rel="stylesheet"/>
 </head>
 <body>
 <header class="header">
