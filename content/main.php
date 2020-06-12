@@ -32,3 +32,4 @@ Init::setMeta( __FILE__, [
 <div class="align-center">
 	<?php echo Init::getPageLink( [ 'p' => 'unlocker', 'caption'=>'Скачать Unlocker 1.9.2','class' => 'button', ] ); ?>
 </div>
+

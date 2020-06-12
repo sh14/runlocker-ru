@@ -1,3 +1,5 @@
+
+<?php include 'ads.php'; ?>
 </div>
 <div class="footer">
 	<div class="footer__text">
